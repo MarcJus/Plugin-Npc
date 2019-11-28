@@ -1,0 +1,11 @@
+name: NpcMarcJus
+version: 1.6
+author: MarcJus
+main: fr.marcjus.plugin.Principale
+commands:
+  npc:
+    description: Fait apparaitre un npc
+  gamestop:
+    description: Stop le cache cache
+    aliases: [gs, gstop]
+  
