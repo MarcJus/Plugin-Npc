@@ -28,8 +28,6 @@ public class CommandStopGame implements CommandExecutor {
 			
 		}
 		
-		
-		
 		return false;
 	}
 
