@@ -23,9 +23,6 @@ public class CommandStopGame implements CommandExecutor {
 			main.setState(GState.STOP);
 			Bukkit.broadcastMessage("§2Le jeu s'est bien arrete");
 			return true;
-			
-			
-			
 		}
 		
 		return false;

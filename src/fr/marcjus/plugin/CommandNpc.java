@@ -45,8 +45,10 @@ public class CommandNpc implements CommandExecutor {
 				
 				if(args[0].equalsIgnoreCase("damage")){
 					if(args[1].equalsIgnoreCase("on")){
+						sender.sendMessage("Les dégats sont activés sur les npc ! ");
 						main.cancelDamageNPC=false;
 					}else if(args[1].equalsIgnoreCase("off")){
+						sender.sendMessage("Les dégats sont désactivés sur les npc ! ");
 						main.cancelDamageNPC=true;
 					}
 				}
@@ -55,7 +57,7 @@ public class CommandNpc implements CommandExecutor {
 			
 			
 		}else{
-			sender.sendMessage("�cVous devez etre un jouer pour executer la commande!");
+			sender.sendMessage("§cVous devez etre un jouer pour executer la commande!");
 		}
 		
 		return false;
