@@ -1,10 +1,14 @@
-package fr.marcjus.plugin;
+package fr.marcjus.plugin.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import fr.marcjus.plugin.GState;
+import fr.marcjus.plugin.Principale;
+import fr.marcjus.plugin.TimerGame;
 
 public class CommandStopGame implements CommandExecutor {
 	
@@ -22,7 +26,7 @@ public class CommandStopGame implements CommandExecutor {
 		}else{
 			main.setState(GState.STOP);
 			int sec = TimerGame.timer & 60;
-			Bukkit.broadcastMessage("§2Le jeu s'est bien arrete ! Il restait §e"+TimerGame.timer/60+"§2min et §e"+sec+"§2s !");
+			Bukkit.broadcastMessage("§2Le jeu s'est bien arrete !§e Il restait §2"+TimerGame.timer/60+"§emin et §2"+sec+"§es !");
 			return true;
 		}
 		

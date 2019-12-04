@@ -1,4 +1,4 @@
-package fr.marcjus.plugin;
+package fr.marcjus.plugin.commands;
 
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -9,6 +9,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 
+import fr.marcjus.plugin.Principale;
 import net.minecraft.server.v1_12_R1.Entity;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 
