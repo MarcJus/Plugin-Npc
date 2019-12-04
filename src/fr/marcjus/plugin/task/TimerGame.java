@@ -7,11 +7,18 @@ import fr.marcjus.plugin.GState;
 import fr.marcjus.plugin.Principale;
 
 public class TimerGame extends BukkitRunnable {
-	
+
 	private Principale main;
+<<<<<<< HEAD:src/fr/marcjus/plugin/task/TimerGame.java
 	
+=======
+
+	public static int timer;
+
+>>>>>>> dev:src/fr/marcjus/plugin/TimerGame.java
 	public TimerGame(Principale main) {
-		this.main=main;
+		this.main = main;
+		this.timer = main.getConfig().getInt("timergame");
 	}
 	
 	public static int timer;
@@ -19,7 +26,14 @@ public class TimerGame extends BukkitRunnable {
 
 	@Override
 	public void run() {
+
+		if (main.isState(GState.STOP))
+			return;
+
+		if (main.isState(GState.STARTING))
+			return;
 		
+<<<<<<< HEAD:src/fr/marcjus/plugin/task/TimerGame.java
 		timer = main.getConfig().getInt("timergame");
 		
 		if(main.isState(GState.STOP))return;
@@ -58,5 +72,33 @@ public class TimerGame extends BukkitRunnable {
 
 	    }
 	
+=======
+		int moduloTimer = timer & 60;
+		if(moduloTimer == 0){
+			Bukkit.broadcastMessage("§eIl reste §2"+timer/60+"§e minutes !");
+		}
+
+		switch (timer) {
+		case 30:
+			Bukkit.broadcastMessage("§eIl reste §230§e secondes!");
+			break;
+		default:
+			break;
+		}
+
+		if (timer <= 10) {
+			Bukkit.broadcastMessage("§eIl reste §c" + timer + "§e secondes !");
+		}
+
+		if (timer == 0) {
+			Bukkit.broadcastMessage("§cLe temps est fini! Le jeu est arreté");
+			cancel();
+			main.setState(GState.STOP);
+		}
+
+		timer--;
+
+	}
+>>>>>>> dev:src/fr/marcjus/plugin/TimerGame.java
 
 }
