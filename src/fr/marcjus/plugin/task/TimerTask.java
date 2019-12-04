@@ -21,7 +21,6 @@ public class TimerTask extends BukkitRunnable {
 
 	@Override
 	public void run() {
-		timer = main.getConfig().getInt("timertask");
 
 		if (main.isState(GState.STOP))
 			return;
@@ -30,32 +29,24 @@ public class TimerTask extends BukkitRunnable {
 			return;
 
 		if (timer == 30) {
-			if (main.isState(GState.STOP))
-				return;
-
-			if (main.isState(GState.PLAYING))
-				return;
-
-			if (timer == main.getConfig().getInt("timertask")) {
-				Bukkit.broadcastMessage("§cAttention il est interdit de se téléporter!");
-			}
-
-			if (timer > 10) {
-				Bukkit.broadcastMessage("Il reste plus que §2" + timer + " s §rpour se cacher");
-			} else if (timer <= 10) {
-				Bukkit.broadcastMessage("Il reste plus que §c" + timer + " s §rpour se cacher");
-			}
-
-			if (timer == 0) {
-				Bukkit.broadcastMessage("Le temps est fini! Bon jeu!");
-				main.setState(GState.PLAYING);
-				TimerGame game = new TimerGame(main);
-				game.runTaskTimer(main, 0, 20);
-				cancel();
-			}
-			timer--;
-
+			Bukkit.broadcastMessage("§cAttention il est interdit de se téléporter!");
 		}
+
+		if (timer > 10) {
+			Bukkit.broadcastMessage("Il reste plus que §2" + timer + " s §rpour se cacher");
+		} else if (timer <= 10) {
+			Bukkit.broadcastMessage("Il reste plus que §c" + timer + " s §rpour se cacher");
+		}
+
+		if (timer == 0) {
+			Bukkit.broadcastMessage("Le temps est fini! Bon jeu!");
+			main.setState(GState.PLAYING);
+			TimerGame game = new TimerGame(main);
+			game.runTaskTimer(main, 0, 20);
+			cancel();
+		}
+		timer--;
+
 	}
 
 }
