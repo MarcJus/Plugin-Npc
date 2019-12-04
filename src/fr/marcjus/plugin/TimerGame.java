@@ -7,7 +7,7 @@ public class TimerGame extends BukkitRunnable {
 	
 	private Principale main;
 	
-	private int timer=180;
+	public static int timer=180;
 
 	public TimerGame(Principale main) {
 		this.main=main;
@@ -38,7 +38,7 @@ public class TimerGame extends BukkitRunnable {
 	    	break;
 	    }
 	    
-	    if(timer<10){
+	    if(timer<=10){
 	    	Bukkit.broadcastMessage("§cIl reste "+timer+" secondes !");
 	    }
 	    

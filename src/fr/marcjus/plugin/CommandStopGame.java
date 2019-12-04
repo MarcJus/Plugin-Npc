@@ -21,7 +21,7 @@ public class CommandStopGame implements CommandExecutor {
 			sender.sendMessage("§cLe jeu n'a pas commence");
 		}else{
 			main.setState(GState.STOP);
-			Bukkit.broadcastMessage("§2Le jeu s'est bien arrete");
+			Bukkit.broadcastMessage("§2Le jeu s'est bien arrete ! Il restait §e"+TimerGame.timer+"§2 !");
 			return true;
 		}
 		
