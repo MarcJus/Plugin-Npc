@@ -19,7 +19,7 @@ public class Principale extends JavaPlugin{
 	
 	@Override
 	public void onEnable() {
-		
+		saveDefaultConfig();
 		setState(GState.STOP);
 		
 		getServer().getPluginManager().registerEvents(new PluginListenerMarc(this), this);
