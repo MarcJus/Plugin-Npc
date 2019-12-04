@@ -1,7 +1,10 @@
-package fr.marcjus.plugin;
+package fr.marcjus.plugin.task;
 
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import fr.marcjus.plugin.GState;
+import fr.marcjus.plugin.Principale;
 
 public class TimerGame extends BukkitRunnable {
 	
