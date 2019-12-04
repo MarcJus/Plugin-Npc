@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 
 import fr.marcjus.plugin.GState;
 import fr.marcjus.plugin.Principale;
-import fr.marcjus.plugin.TimerGame;
+import fr.marcjus.plugin.task.TimerGame;
 
 public class CommandGetTime implements CommandExecutor {
 

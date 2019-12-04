@@ -24,6 +24,8 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import fr.marcjus.plugin.task.TimerTask;
+
 public class PluginListenerMarc implements Listener {
 
 	private Principale main;
