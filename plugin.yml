@@ -10,4 +10,5 @@ commands:
     aliases: [gs, gstop]
   gettime:
     description: Affiche le temps restant du cache cache
+    aliases: [gt, gtime]
   
