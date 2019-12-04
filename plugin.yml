@@ -1,5 +1,5 @@
 name: NpcMarcJus
-version: 1.7
+version: 1.6
 author: MarcJus
 main: fr.marcjus.plugin.Principale
 commands:
@@ -9,5 +9,6 @@ commands:
     description: Stop le cache cache
     aliases: [gs, gstop]
   gettime:
-    description: Affiche le temps restant du cache cache
+    description: Affiche le temps restant d'un cache cache
+    aliases: [gt, gtime]
   

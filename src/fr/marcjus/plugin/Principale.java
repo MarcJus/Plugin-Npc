@@ -2,7 +2,6 @@ package fr.marcjus.plugin;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.marcjus.plugin.commands.CommandGetTime;
 import fr.marcjus.plugin.commands.CommandNpc;
 import fr.marcjus.plugin.commands.CommandStopGame;
 
@@ -26,7 +25,6 @@ public class Principale extends JavaPlugin{
 		getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 		getCommand("npc").setExecutor(new CommandNpc(this));
 		getCommand("gamestop").setExecutor(new CommandStopGame(this));
-		getCommand("gettime").setExecutor(new CommandGetTime(this));
 	}
 	
 	@Override
