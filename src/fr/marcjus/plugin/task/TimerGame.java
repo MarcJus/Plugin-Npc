@@ -10,14 +10,17 @@ public class TimerGame extends BukkitRunnable {
 	
 	private Principale main;
 	
-	public static int timer=180;
-
 	public TimerGame(Principale main) {
 		this.main=main;
 	}
+	
+	public static int timer;
+
 
 	@Override
 	public void run() {
+		
+		timer = main.getConfig().getInt("timergame");
 		
 		if(main.isState(GState.STOP))return;
 		

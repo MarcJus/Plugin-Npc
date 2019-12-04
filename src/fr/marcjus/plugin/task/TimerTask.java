@@ -21,6 +21,8 @@ public class TimerTask extends BukkitRunnable {
 	@Override
 	public void run() {
 		
+		timer = main.getConfig().getInt("timertask");
+		
 		if(main.isState(GState.STOP))return;
 		
 		if(main.isState(GState.PLAYING))return;
