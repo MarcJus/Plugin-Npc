@@ -1,0 +1,68 @@
+<html><head><title>mrpt-performance results</title></head><body>
+
+<div align="center"><h3>Results</h3></div><br><div align="center"><table border="1">
+<tr> <td align="center"><b>Test description</b></td> <td align="center"><b>Execution time</b></td><td align="center"><b>Execution rate (Hz)</b></td> </tr>
+<tr> <td>icp-slam (match points): Run with sample dataset</td> <td align="right">1.00 sec</td> <td align="right">1.00  Hz</td>  </tr>
+<tr> <td>icp-slam (match grid): Run with sample dataset</td> <td align="right">1.00 sec</td> <td align="right">1.00  Hz</td>  </tr>
+<tr> <td>poses: CPose3D (+) CPose3D</td> <td align="right">38.09 ns</td> <td align="right">26.25 MHz</td>  </tr>
+<tr> <td>poses: CPose3D.composeFrom()</td> <td align="right">34.26 ns</td> <td align="right">29.19 MHz</td>  </tr>
+<tr> <td>poses: CPose3D (+) CPoint3D</td> <td align="right">5.80 ns</td> <td align="right">172.35 MHz</td>  </tr>
+<tr> <td>poses: CPose3D.composePoint()</td> <td align="right">9.47 ns</td> <td align="right">105.57 MHz</td>  </tr>
+<tr> <td>poses: CPose3D.composePoint()+Jacobs</td> <td align="right">153.56 ns</td> <td align="right">6.51 MHz</td>  </tr>
+<tr> <td>poses: CPoint3D (-) CPose3D</td> <td align="right">9.32 ns</td> <td align="right">107.27 MHz</td>  </tr>
+<tr> <td>poses: CPose3D.inverseComposePoint()</td> <td align="right">14.48 ns</td> <td align="right">69.06 MHz</td>  </tr>
+<tr> <td>poses: CPose2D (+) CPose2D</td> <td align="right">17.19 ns</td> <td align="right">58.17 MHz</td>  </tr>
+<tr> <td>poses: CPose2D.composeFrom()</td> <td align="right">15.80 ns</td> <td align="right">63.28 MHz</td>  </tr>
+<tr> <td>poses: CPose2D (+) CPoint2D</td> <td align="right">6.11 ns</td> <td align="right">163.77 MHz</td>  </tr>
+<tr> <td>poses: CPose2D.composePoint()</td> <td align="right">8.76 ns</td> <td align="right">114.21 MHz</td>  </tr>
+<tr> <td>poses: CPose3DQuat (+) CPose3DQuat</td> <td align="right">28.03 ns</td> <td align="right">35.68 MHz</td>  </tr>
+<tr> <td>poses: CPose3DQuat.composeFrom()</td> <td align="right">22.24 ns</td> <td align="right">44.96 MHz</td>  </tr>
+<tr> <td>poses: CPose3DQuat (+) CPoint3D</td> <td align="right">11.56 ns</td> <td align="right">86.54 MHz</td>  </tr>
+<tr> <td>poses: CPose3DQuat.composePoint()</td> <td align="right">11.57 ns</td> <td align="right">86.43 MHz</td>  </tr>
+<tr> <td>poses: CPose3DQuat.invcomposePoint()</td> <td align="right">9.74 ns</td> <td align="right">102.71 MHz</td>  </tr>
+<tr> <td>poses: Conv CPose3DQuat <- CPose3D</td> <td align="right">12.74 ns</td> <td align="right">78.49 MHz</td>  </tr>
+<tr> <td>poses: Conv CPose3D -> CPose3DQuat</td> <td align="right">105.62 ns</td> <td align="right">9.47 MHz</td>  </tr>
+<tr> <td>poses: Conv CPose3DQuat Gauss <- CPose3D Gauss (DEF)</td> <td align="right">86.89 us</td> <td align="right">11.51 KHz</td>  </tr>
+<tr> <td>poses: Conv CPose3DQuat Gauss <- CPose3D Gauss (Lin)</td> <td align="right">86.90 us</td> <td align="right">11.51 KHz</td>  </tr>
+<tr> <td>poses: Conv CPose3DQuat Gauss <- CPose3D Gauss (SUT)</td> <td align="right">6.94 us</td> <td align="right">144.02 KHz</td>  </tr>
+<tr> <td>poses: Conv CPose3D Gauss <- CPose3DQuat Gauss (DEF)</td> <td align="right">310.10 ns</td> <td align="right">3.22 MHz</td>  </tr>
+<tr> <td>poses: Conv CPose3D Gauss <- CPose3DQuat Gauss (Lin)</td> <td align="right">311.50 ns</td> <td align="right">3.21 MHz</td>  </tr>
+<tr> <td>poses: Conv CPose3D Gauss <- CPose3DQuat Gauss (SUT)</td> <td align="right">7.39 us</td> <td align="right">135.28 KHz</td>  </tr>
+<tr> <td>CPose3DInterpolator: CPose3D insert pose at end</td> <td align="right">332.84 ns</td> <td align="right">3.00 MHz</td>  </tr>
+<tr> <td>CPose3DInterpolator: CPose3D insert pose random</td> <td align="right">257.40 ns</td> <td align="right">3.88 MHz</td>  </tr>
+<tr> <td>CPose3DInterpolator: CPose3D query</td> <td align="right">629.81 ns</td> <td align="right">1.59 MHz</td>  </tr>
+<tr> <td>CPose3DInterpolator: TPose3D insert pose at end</td> <td align="right">286.12 ns</td> <td align="right">3.49 MHz</td>  </tr>
+<tr> <td>CPose3DInterpolator: TPose3D insert pose random</td> <td align="right">280.00 ns</td> <td align="right">3.57 MHz</td>  </tr>
+<tr> <td>CPose3DInterpolator: TPose3D query</td> <td align="right">507.70 ns</td> <td align="right">1.97 MHz</td>  </tr>
+<tr> <td>CPose2DInterpolator: TPose2D insert pose at end</td> <td align="right">242.41 ns</td> <td align="right">4.13 MHz</td>  </tr>
+<tr> <td>CPose2DInterpolator: TPose2D insert pose random</td> <td align="right">255.85 ns</td> <td align="right">3.91 MHz</td>  </tr>
+<tr> <td>CPose2DInterpolator: TPose2D query</td> <td align="right">225.77 ns</td> <td align="right">4.43 MHz</td>  </tr>
+<tr> <td>matrix: unit, dyn[float], 3x3</td> <td align="right">16.57 ns</td> <td align="right">60.35 MHz</td>  </tr>
+<tr> <td>matrix: unit, dyn[double], 3x3</td> <td align="right">13.43 ns</td> <td align="right">74.46 MHz</td>  </tr>
+<tr> <td>matrix: unit, dyn[float], 6x6</td> <td align="right">47.14 ns</td> <td align="right">21.21 MHz</td>  </tr>
+<tr> <td>matrix: unit, dyn[double], 6x6</td> <td align="right">43.75 ns</td> <td align="right">22.86 MHz</td>  </tr>
+<tr> <td>matrix: unit, fix[float,3,3]</td> <td align="right">0.00 ns</td> <td align="right">1.00 THz</td>  </tr>
+<tr> <td>matrix: unit, fix[double,3,3]</td> <td align="right">0.00 ns</td> <td align="right">1.00 THz</td>  </tr>
+<tr> <td>matrix: unit, fix[float,6,6]</td> <td align="right">0.00 ns</td> <td align="right">inf THz</td>  </tr>
+<tr> <td>matrix: unit, fix[double,6,6]</td> <td align="right">0.00 ns</td> <td align="right">333.33 GHz</td>  </tr>
+<tr> <td>matrix: multiply, dyn[float ], 3x3 * 3x3</td> <td align="right">99.00 ns</td> <td align="right">10.10 MHz</td>  </tr>
+<tr> <td>matrix: multiply, fix[float ], 3x3 * 3x3</td> <td align="right">27.80 ns</td> <td align="right">35.97 MHz</td>  </tr>
+<tr> <td>matrix: multiply, dyn[double], 3x3 * 3x3</td> <td align="right">99.40 ns</td> <td align="right">10.06 MHz</td>  </tr>
+<tr> <td>matrix: multiply, fix[double], 3x3 * 3x3</td> <td align="right">33.70 ns</td> <td align="right">29.67 MHz</td>  </tr>
+<tr> <td>matrix: multiply, dyn[float ], 3x6 * 6x3</td> <td align="right">115.60 ns</td> <td align="right">8.65 MHz</td>  </tr>
+<tr> <td>matrix: multiply, fix[float ], 3x6 * 6x3</td> <td align="right">0.20 ns</td> <td align="right">5.00 GHz</td>  </tr>
+<tr> <td>matrix: multiply, dyn[double], 3x6 * 6x3</td> <td align="right">117.40 ns</td> <td align="right">8.52 MHz</td>  </tr>
+<tr> <td>matrix: multiply, fix[double], 3x6 * 6x3</td> <td align="right">0.60 ns</td> <td align="right">1.67 GHz</td>  </tr>
+<tr> <td>matrix: multiply, dyn[float ], 10x40 * 40x10</td> <td align="right">1.17 us</td> <td align="right">854.92 KHz</td>  </tr>
+<tr> <td>matrix: multiply, fix[float ], 10x40 * 40x10</td> <td align="right">1.05 us</td> <td align="right">951.02 KHz</td>  </tr>
+<tr> <td>matrix: multiply, dyn[double], 10x40 * 40x10</td> <td align="right">2.12 us</td> <td align="right">471.21 KHz</td>  </tr>
+<tr> <td>matrix: multiply, fix[double], 10x40 * 40x10</td> <td align="right">1.94 us</td> <td align="right">516.64 KHz</td>  </tr>
+<tr> <td>matrix: inv, dyn[double] 3x3</td> <td align="right">650.00 ns</td> <td align="right">1.54 MHz</td>  </tr>
+<tr> <td>matrix: inv, fix[double] 3x3</td> <td align="right">6.00 ns</td> <td align="right">166.67 MHz</td>  </tr>
+<tr> <td>matrix: inv, dyn[double] 6x6</td> <td align="right">1.41 us</td> <td align="right">707.21 KHz</td>  </tr>
+<tr> <td>matrix: inv, fix[double] 6x6</td> <td align="right">1.02 us</td> <td align="right">982.32 KHz</td>  </tr>
+<tr> <td>matrix: inv, dyn[double] 20x20</td> <td align="right">13.07 us</td> <td align="right">76.50 KHz</td>  </tr>
+<tr> <td>matrix: inv, fix[double] 20x20</td> <td align="right">11.87 us</td> <td align="right">84.27 KHz</td>  </tr>
+<tr> <td>matrix: inv, dyn[double] 40x40</td> <td align="right">55.15 us</td> <td align="right">18.13 KHz</td>  </tr>
+<tr> <td>matrix: inv, fix[double] 40x40</td> <td align="right">54.69 us</td> <td align="right">18.28 KHz</td>  </tr>
+<tr> <td>matrix: det, dyn[double] 2x2</td> <td align="right">196.30 ns</td> <td align="right">5.09 MHz</td>  </tr>

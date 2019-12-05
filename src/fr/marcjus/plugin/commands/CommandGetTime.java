@@ -25,7 +25,7 @@ public class CommandGetTime implements CommandExecutor {
 			} else if (main.isState(GState.STARTING)) {
 				sender.sendMessage("§cLe jeu est en train de démarrer !");
 			} else if (main.isState(GState.STOP)) {
-				sender.sendMessage("§cLe jeu est fini !");
+				sender.sendMessage("§cLe jeu est fini ou n'a pas commencé !");
 			}
 
 		}
