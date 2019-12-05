@@ -12,7 +12,7 @@ public class TimerGame extends BukkitRunnable {
 
 	public TimerGame(Principale main) {
 		this.main = main;
-		this.timer = main.getConfig().getInt("timergame");
+		TimerGame.timer = main.getConfig().getInt("timergame");
 	}
 
 	public static int timer;

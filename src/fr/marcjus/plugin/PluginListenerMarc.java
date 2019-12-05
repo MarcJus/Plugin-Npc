@@ -4,7 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.block.BlockState;
@@ -29,7 +28,6 @@ import fr.marcjus.plugin.task.TimerTask;
 public class PluginListenerMarc implements Listener {
 
 	private Principale main;
-	private GState steps;
 	private Player playerBegin;
 
 	public PluginListenerMarc(Principale principale) {
@@ -126,8 +124,11 @@ public class PluginListenerMarc implements Listener {
 				Location village = new Location(player.getWorld(), -370, 67, 305, -90f, 0f);
 				player.teleport(village);
 			} else if (it.equals(NPCItems.CACHECACHE.getItem())) {
-
 				Location cacheCache = new Location(player.getWorld(), -362, 74, 402, 179.9f, 0f);
+				
+				if(main.isState(GState.PLAYING)){
+					main.setState(GState.STARTING);
+				}
 				player.teleport(cacheCache);
 				main.setState(GState.STARTING);
 				playerBegin = player;
