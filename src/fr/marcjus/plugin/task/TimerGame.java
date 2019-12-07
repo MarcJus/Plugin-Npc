@@ -10,31 +10,27 @@ public class TimerGame extends BukkitRunnable {
 
 	private Principale main;
 
-	public static int timer;
-
 	public TimerGame(Principale main) {
 		this.main = main;
-		this.timer = main.getConfig().getInt("timergame");
+		TimerGame.timer = main.getConfig().getInt("timergame");
 	}
+
+	public static int timer;
 
 	@Override
 	public void run() {
 
-		if (main.isState(GState.STOP))
-			return;
-
-		if (main.isState(GState.STARTING))
-			return;
-		
 		int moduloTimer = timer & 60;
-		if(moduloTimer == 0){
-			Bukkit.broadcastMessage("§eIl reste §2"+timer/60+"§e minutes !");
+
+		if (moduloTimer == 0) {
+			Bukkit.broadcastMessage("§eIl reste §2" + timer / 60 + "§e minutes !");
 		}
 
 		switch (timer) {
 		case 30:
 			Bukkit.broadcastMessage("§eIl reste §230§e secondes!");
 			break;
+
 		default:
 			break;
 		}

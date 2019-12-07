@@ -25,7 +25,7 @@ public class CommandStopGame implements CommandExecutor {
 		}else{
 			main.setState(GState.STOP);
 			int sec = TimerGame.timer & 60;
-			Bukkit.broadcastMessage("§2Le jeu s'est bien arrete !§e Il restait §2"+TimerGame.timer/60+"§emin et §2"+sec+"§es !");
+			Bukkit.broadcastMessage("§2Le jeu s'est bien arrete ! Il restait §e"+TimerGame.timer/60+"§2min et §e"+sec+"§2s !");
 			return true;
 		}
 		
