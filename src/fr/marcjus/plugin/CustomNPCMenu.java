@@ -30,5 +30,9 @@ public class CustomNPCMenu {
 	public void openMenu(Player player) {
 		player.openInventory(inv);
 	}
+	
+	public Inventory getInv(){
+		return inv;
+	}
 
 }
