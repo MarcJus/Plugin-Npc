@@ -1,9 +1,12 @@
 package fr.marcjus.plugin;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -16,6 +19,8 @@ public class Principale extends JavaPlugin {
 	private GState state;
 	public boolean cancelDamageNPC = true;
 	private ArrayList<Player> playersChest = new ArrayList<>();
+	private ArrayList<Location> locsChest = new ArrayList<>();
+	private Map<Player, Location> playersLocChest = new HashMap<>();
 
 	@Override
 	public void onEnable() {
@@ -32,7 +37,14 @@ public class Principale extends JavaPlugin {
 
 	private void addPlayerChest() {
 		for(Player player : Bukkit.getOnlinePlayers()){
-			playersChest.add(player);
+			World world = Bukkit.getWorld("world");
+			locsChest.add(new Location(world, -387, 72, 369));
+			locsChest.add(new Location(world, -387, 72, 371));
+			locsChest.add(new Location(world, -387, 72, 367));
+			for(int i = 0; i<locsChest.size(); i++){
+				playersLocChest.put(player, locsChest.get(i));
+			}
+			
 		}
 	}
 
@@ -51,6 +63,14 @@ public class Principale extends JavaPlugin {
 	
 	public ArrayList<Player> getPlayersChest(){
 		return playersChest;
+	}
+
+	public ArrayList<Location> getLocsChest() {
+		return locsChest;
+	}
+
+	public Map<Player, Location> getPlayersLocChest() {
+		return playersLocChest;
 	}
 
 }

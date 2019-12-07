@@ -192,7 +192,6 @@ public class PluginListenerMarc implements Listener {
 			if (bs instanceof Chest) {
 				Chest c = (Chest) bs;
 				player.sendMessage(inv.getName());
-				c.setCustomName("§2Inventaire perso de "+meta.getOwner());
 				player.openInventory(c.getInventory());
 			}else{
 				player.sendMessage("ce n'est pas un coffre");
