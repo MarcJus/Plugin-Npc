@@ -3,13 +3,14 @@ package fr.marcjus.plugin;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
+import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -27,16 +28,16 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import fr.marcjus.plugin.menus.ChestTerraceMenu;
-import fr.marcjus.plugin.menus.InvPerso;
+import fr.marcjus.plugin.menus.CustomNPCMenu;
 import fr.marcjus.plugin.task.TimerTask;
 
 public class PluginListenerMarc implements Listener {
 
 	private Principale main;
 	private Player playerBegin;
-	private ArrayList<Player> playersChest = new ArrayList<>();
 
 	public PluginListenerMarc(Principale principale) {
 		this.main = principale;
@@ -45,8 +46,8 @@ public class PluginListenerMarc implements Listener {
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		Player player = e.getPlayer();
-		if (!playersChest.contains(player)) {
-			playersChest.add(player);
+		if (!main.getPlayersChest().contains(player)) {
+			main.getPlayersChest().add(player);
 		}
 	}
 
@@ -96,13 +97,11 @@ public class PluginListenerMarc implements Listener {
 
 	}
 
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void interractWithNPC(PlayerInteractAtEntityEvent e) {
 
 		Player player = e.getPlayer();
 		Entity ent = e.getRightClicked();
-		ItemStack it = player.getItemInHand();
 
 		if (ent instanceof Villager) {
 			Villager npc = (Villager) ent;
@@ -172,18 +171,33 @@ public class PluginListenerMarc implements Listener {
 			if (it == null || it.getType() == null)
 				return;
 			e.setCancelled(true);
-			player.closeInventory();
-			
-			
-			if(it.getType().equals(Material.CHEST) && it.hasItemMeta() && it.getItemMeta().getDisplayName().equals("§eInventaires personnels")){
-				Inventory invperso = Bukkit.createInventory(null, 27, "§eInventaires personnels");
+
+			if (it.getType().equals(Material.CHEST) && it.hasItemMeta()
+					&& it.getItemMeta().getDisplayName().equals("§eInventaires personnels")) {
+				player.closeInventory();
 				ChestTerraceMenu chestMenu = new ChestTerraceMenu();
-				chestMenu.createMenu(playersChest);
+				chestMenu.createMenu(main.getPlayersChest());
 				chestMenu.openInventory(player);
 			}
 
-		}else if (inv != null && inv.getName().equals("§eInventaires personnels")){
-			InvPerso invperso = new InvPerso();
+		} else if (inv != null && inv.getName().equals("§2Inventaires personnels")) {
+			player.closeInventory();
+			e.setCancelled(true);
+			player.closeInventory();
+			ItemStack skull = e.getCurrentItem();
+			SkullMeta meta = (SkullMeta) it.getItemMeta();
+			Location loc = new Location(Bukkit.getWorld("world"), -387, 72, 369);
+			Block block = loc.getWorld().getBlockAt(loc);
+			BlockState bs = block.getState();
+			if (bs instanceof Chest) {
+				Chest c = (Chest) bs;
+				player.sendMessage(inv.getName());
+				c.setCustomName("§2Inventaire perso de "+meta.getOwner());
+				player.openInventory(c.getInventory());
+			}else{
+				player.sendMessage("ce n'est pas un coffre");
+			}
+
 		}
 
 	}
@@ -225,4 +239,5 @@ public class PluginListenerMarc implements Listener {
 
 		return false;
 	}
+
 }

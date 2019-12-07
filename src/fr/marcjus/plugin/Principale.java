@@ -1,5 +1,10 @@
 package fr.marcjus.plugin;
 
+import java.util.ArrayList;
+
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.marcjus.plugin.commands.CommandGetTime;
@@ -10,17 +15,25 @@ public class Principale extends JavaPlugin {
 
 	private GState state;
 	public boolean cancelDamageNPC = true;
+	private ArrayList<Player> playersChest = new ArrayList<>();
 
 	@Override
 	public void onEnable() {
 		saveDefaultConfig();
 		setState(GState.STOP);
+		addPlayerChest();
 
 		getServer().getPluginManager().registerEvents(new PluginListenerMarc(this), this);
 		getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 		getCommand("npc").setExecutor(new CommandNpc(this));
 		getCommand("gamestop").setExecutor(new CommandStopGame(this));
 		getCommand("gettime").setExecutor(new CommandGetTime(this));
+	}
+
+	private void addPlayerChest() {
+		for(Player player : Bukkit.getOnlinePlayers()){
+			playersChest.add(player);
+		}
 	}
 
 	@Override
@@ -34,6 +47,10 @@ public class Principale extends JavaPlugin {
 
 	public void setState(GState state) {
 		this.state = state;
+	}
+	
+	public ArrayList<Player> getPlayersChest(){
+		return playersChest;
 	}
 
 }

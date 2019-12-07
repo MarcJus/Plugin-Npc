@@ -1,8 +1,10 @@
-package fr.marcjus.plugin;
+package fr.marcjus.plugin.menus;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+
+import fr.marcjus.plugin.NPCItems;
 
 public class CustomNPCMenu {
 

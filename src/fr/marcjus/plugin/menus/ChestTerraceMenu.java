@@ -14,7 +14,7 @@ public class ChestTerraceMenu {
 	private Inventory inv;
 	
 	public ChestTerraceMenu() {
-		inv = Bukkit.createInventory(null, 27, "§eInventaires personnels");
+		inv = Bukkit.createInventory(null, 27, "§2Inventaires personnels");
 		
 	}
 	
@@ -24,7 +24,7 @@ public class ChestTerraceMenu {
 			ItemStack it = new ItemStack(Material.SKULL_ITEM, 1, (byte)3);
 			SkullMeta meta = (SkullMeta) it.getItemMeta();
 			meta.setOwner(player.getName());
-			meta.setDisplayName("§eInventaire de §2"+player.getName());
+			meta.setDisplayName("§eInventaire perso de §2"+player.getName());
 			it.setItemMeta(meta);
 			inv.addItem(it);
 		}
