@@ -34,21 +34,14 @@ import fr.marcjus.plugin.menus.ChestTerraceMenu;
 import fr.marcjus.plugin.menus.CustomNPCMenu;
 import fr.marcjus.plugin.task.TimerTask;
 
-public class PluginListenerMarc implements Listener {
+@SuppressWarnings("unused")
+public class PluginListenerNpc implements Listener {
 
 	private Principale main;
 	private Player playerBegin;
 
-	public PluginListenerMarc(Principale principale) {
+	public PluginListenerNpc(Principale principale) {
 		this.main = principale;
-	}
-
-	@EventHandler
-	public void onJoin(PlayerJoinEvent e) {
-		Player player = e.getPlayer();
-		if (!main.getPlayersChest().contains(player)) {
-			main.getPlayersChest().add(player);
-		}
 	}
 
 	@EventHandler
@@ -112,23 +105,12 @@ public class PluginListenerMarc implements Listener {
 				CustomNPCMenu menu = new CustomNPCMenu(27, "§2MenuNPC");
 				menu.createMenu();
 				menu.openMenu(player);
-			} else if (npc.isCustomNameVisible() && npc.getCustomName() != null
-					&& npc.getCustomName().equals("§2Villageois de la terrasse")) {
-				CustomNPCMenu menu = new CustomNPCMenu(27, "§2Villageois de la terrasse");
-				ItemStack chest = new ItemStack(Material.CHEST);
-				ItemMeta meta = chest.getItemMeta();
-				meta.setDisplayName("§eInventaires personnels");
-				chest.setItemMeta(meta);
-				menu.getInv().setItem(13, chest);
-
-				menu.openMenu(player);
 			}
 
 		}
 
 	}
 
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onClickNPCMenu(InventoryClickEvent e) {
 
@@ -164,37 +146,6 @@ public class PluginListenerMarc implements Listener {
 				TimerTask task = new TimerTask(main);
 				task.runTaskTimer(main, 0, 20);
 
-			}
-
-		} else if (inv != null && inv.getName().equals("§2Villageois de la terrasse")) {
-
-			if (it == null || it.getType() == null)
-				return;
-			e.setCancelled(true);
-
-			if (it.getType().equals(Material.CHEST) && it.hasItemMeta()
-					&& it.getItemMeta().getDisplayName().equals("§eInventaires personnels")) {
-				player.closeInventory();
-				ChestTerraceMenu chestMenu = new ChestTerraceMenu();
-				chestMenu.createMenu(main.getPlayersChest());
-				chestMenu.openInventory(player);
-			}
-
-		} else if (inv != null && inv.getName().equals("§2Inventaires personnels")) {
-			player.closeInventory();
-			e.setCancelled(true);
-			player.closeInventory();
-			ItemStack skull = e.getCurrentItem();
-			SkullMeta meta = (SkullMeta) it.getItemMeta();
-			Location loc = new Location(Bukkit.getWorld("world"), -387, 72, 369);
-			Block block = loc.getWorld().getBlockAt(loc);
-			BlockState bs = block.getState();
-			if (bs instanceof Chest) {
-				Chest c = (Chest) bs;
-				player.sendMessage(inv.getName());
-				player.openInventory(c.getInventory());
-			}else{
-				player.sendMessage("ce n'est pas un coffre");
 			}
 
 		}

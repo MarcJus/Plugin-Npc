@@ -28,7 +28,7 @@ public class Principale extends JavaPlugin {
 		setState(GState.STOP);
 		addPlayerChest();
 
-		getServer().getPluginManager().registerEvents(new PluginListenerMarc(this), this);
+		getServer().getPluginManager().registerEvents(new PluginListenerNpc(this), this);
 		getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 		getCommand("npc").setExecutor(new CommandNpc(this));
 		getCommand("gamestop").setExecutor(new CommandStopGame(this));
