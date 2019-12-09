@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,6 +18,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.Zombie;
+import org.bukkit.inventory.ItemStack;
 
 import com.mojang.authlib.GameProfile;
 
@@ -28,7 +30,6 @@ import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import net.minecraft.server.v1_12_R1.PacketPlayOutEntityHeadRotation;
 import net.minecraft.server.v1_12_R1.PacketPlayOutNamedEntitySpawn;
 import net.minecraft.server.v1_12_R1.PacketPlayOutPlayerInfo;
-import net.minecraft.server.v1_12_R1.PacketPlayOutSpawnEntityLiving;
 import net.minecraft.server.v1_12_R1.PlayerConnection;
 import net.minecraft.server.v1_12_R1.PlayerInteractManager;
 import net.minecraft.server.v1_12_R1.WorldServer;
@@ -78,12 +79,14 @@ public class CommandNpc implements CommandExecutor {
 							player.sendMessage("Les dégats sont activés sur les npc ! ");
 						}
 					}
-				} else if (args[0].equalsIgnoreCase("nms")) {
+				} else if (args[0].equalsIgnoreCase("terrasse")) {
 					createNmsVillager(player, "§2Villageois de la terrasse", true);
 				}else if(args[0].equalsIgnoreCase("zombie")){
 					createZombiePrisoner(player, "§cDangereux criminel", false);
 				}else if(args[0].equalsIgnoreCase("player")){
 					createPlayer(player, "§0CustomPlayer", true);
+				}else if(args[0].equalsIgnoreCase("boss")){
+					createPrisoner(player, "§4Boss");
 				}
 			}
 
@@ -92,6 +95,23 @@ public class CommandNpc implements CommandExecutor {
 		}
 
 		return false;
+	}
+
+	private void createPrisoner(Player player, String name) {
+		
+		Location loc = player.getLocation();
+		Zombie zombie = (Zombie) player.getWorld().spawnEntity(loc, EntityType.ZOMBIE);
+		zombie.setCustomName(name);
+		zombie.setCustomNameVisible(true);
+		ItemStack helmet = new ItemStack(Material.DIAMOND_HELMET, 1);
+		ItemStack chestplate = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
+		ItemStack leggins = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
+		ItemStack boots = new ItemStack(Material.DIAMOND_BOOTS, 1);
+		zombie.getEquipment().setBoots(boots);
+		zombie.getEquipment().setChestplate(chestplate);
+		zombie.getEquipment().setLeggings(leggins);
+		zombie.getEquipment().setHelmet(helmet);
+		zombie.getEquipment().setItemInMainHand(new ItemStack(Material.DIAMOND_SWORD));
 	}
 
 	private void createPlayer(Player player, String customName, boolean customNameVisible) {
@@ -103,6 +123,7 @@ public class CommandNpc implements CommandExecutor {
 		EntityPlayer npc = new EntityPlayer(nmsServer, worldserver, profile, new PlayerInteractManager(worldserver));
 		Player npcPlayer = npc.getBukkitEntity().getPlayer();
 		
+		npc.setInvulnerable(false);
 		npcPlayer.setPlayerListName(customName);
 		npc.setLocation(loc.getX(), loc.getY(), loc.getZ(), loc.getYaw(), loc.getPitch());
 		
