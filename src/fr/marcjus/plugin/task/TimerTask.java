@@ -42,7 +42,7 @@ public class TimerTask extends BukkitRunnable {
 			Bukkit.broadcastMessage("Le temps est fini! Bon jeu!");
 			main.setState(GState.PLAYING);
 			TimerGame game = new TimerGame(main);
-			game.runTaskTimer(main, 0, 20);
+			game.runTaskTimerAsynchronously(main, 0, 20);
 			cancel();
 		}
 		timer--;
